@@ -1,0 +1,15 @@
+{
+  "name": "produtos",
+  "version": "1.0.0",
+  "description": "Console application produtos",
+  "main": "main.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "It Mentors",
+  "license": "ISC",
+  "dependencies": {
+    "uuid": "^8.3.2",
+    "yargs": "^17.0.1"
+  }
+}
