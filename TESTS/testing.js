@@ -1,4 +1,13 @@
+const product = require('./product');
+const yargs = require('yargs');
+let commands = yargs.argv;
+productsNames = []
 
+var productsList = product.ListAll();
+productsList.forEach(prod => {
+    thisProd = prod.name
+    productsNames.push(thisProd);
+    });
 
 
 switch (process.argv[2]) {
