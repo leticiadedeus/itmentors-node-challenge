@@ -18,7 +18,8 @@ var productsList = product.ListAll();
 
 productsList.forEach(prod => {
     thisProd = prod.name
-    productsNames.push(thisProd);
+    var thisProdLow = thisProd.toLowerCase()
+    productsNames.push(thisProdLow);
     });
 
 switch (process.argv[2]) {
@@ -31,12 +32,14 @@ switch (process.argv[2]) {
             commands.price,
             commands.stock
         )
+
+        var titleLow = commands.title.toLowerCase()
         
-        if (productsNames.includes(commands.title) == false){
+        if (productsNames.includes(titleLow) == false){
             
             product.AddProduct(newProduct, () => {
                 console.log(`product created ${commands.title}`);
-                productsNames.push(commands.title)
+                productsNames.push(titleLow)
                 console.log(productsNames);
             });
 
