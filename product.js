@@ -17,6 +17,8 @@ module.exports.AddProduct = (product, callback) => {
 
 }
 
+
+
 module.exports.ListAll = () => {
 
     var data = fs.readFileSync(repoFile);
@@ -42,3 +44,19 @@ module.exports.GetProduct = (name) => {
     return products.filter(elem => elem.name === name);
 
 }
+
+module.exports.UpdateProduct = (local, newInfo, callback) => {
+    /*var old = JSON.parse(fs.readFileSync(repoFile));*/
+
+    jsn = this.ListAll()
+
+    jsn.splice(local, 1, newInfo);
+
+    fs.writeFile(repoFile, JSON.stringify(jsn), callback)
+}
+
+module.exports.DeleteProduct = (delProduct) => {
+    delete delProduct 
+}
+
+

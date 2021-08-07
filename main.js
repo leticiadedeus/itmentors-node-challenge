@@ -1,14 +1,11 @@
 const os = require('os');
 var user = os.userInfo();
-
 const product = require('./product');
-
 const yargs = require('yargs');
 const { title } = require('process');
+let commands = yargs.argv;
 
 console.log(`My application ${user.username}`);
-
-let commands = yargs.argv;
 
 let br = '----';
 
@@ -21,6 +18,16 @@ productsList.forEach(prod => {
     var thisProdLow = thisProd.toLowerCase()
     productsNames.push(thisProdLow);
     });
+
+function showProduct (list){
+    list.forEach(prod => {
+        console.log(prod.id);
+        console.log(prod.name);
+        console.log(prod.price);
+        console.log(prod.stock);
+        console.log(br);
+    });
+}
 
 switch (process.argv[2]) {
     
@@ -53,7 +60,7 @@ switch (process.argv[2]) {
         
     case 'read':
         
-        var productsList = product.GetProduct(process.argv[3]);
+        var productElements = product.GetProduct(process.argv[3]);
 
         for (let index = 0; index < 5; index++) {
             br += br
@@ -61,29 +68,15 @@ switch (process.argv[2]) {
 
         console.log(br);
 
-        productsList.forEach(prod => {
-            console.log(prod.id);
-            console.log(prod.name);
-            console.log(prod.price);
-            console.log(prod.stock);
-            console.log(br);
-        });
+        showProduct(productElements)
 
         break;
 
     case 'list':
 
-        var productsList = product.ListAll();
-
         console.log(br);
 
-        productsList.forEach(prod => {
-            console.log(prod.id);
-            console.log(prod.name);
-            console.log(prod.price);
-            console.log(prod.stock);
-            console.log(br);
-        });
+        showProduct(productsList)
 
         break;
 
@@ -95,12 +88,3 @@ switch (process.argv[2]) {
         break;
 
 }
-
-
-// non repeat 
-
-
-// Updating
-
-
-// Deleting
